@@ -24,15 +24,23 @@ print "the sum of price squared is: " + str(sum_prices_squared)
 
 def simple_linear_regression(input_feature, output):
     # compute the sum of input_feature and output
-    
+    in_sum = input_feature.sum()
+    out_sum = output.sum()
+
     # compute the product of the output and the input_feature and its sum
-    
+    pro = input_feature * output
+    pro_sum = pro.sum()
+
     # compute the squared value of the input_feature and its sum
-    
+    in_sq = input_feature * input_feature
+    in_sq_sum = in_sq.sum()   
     # use the formula for the slope
+    slope = (pro_sum - num*avi*avo)/(in_sq_sum-num*avi*avi)
+ # http://beike.dangzhi.com/view/5l757s   
     
     # use the formula for the intercept
-    
+    intercept = avo - avi*slope
+
     return (intercept, slope)
     
 test_feature = graphlab.SArray(range(5))
