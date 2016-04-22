@@ -103,3 +103,18 @@ return(estimated_input)
 12. Now that we have 2 different models compute the RSS from BOTH models on TEST data.
 
 13. Quiz Question: Which model (square feet or bedrooms) has lowest RSS on TEST data? Think about why this might be the case.
+
+## Output
+'
+Test Intercept: 1.0
+Test Slope: 1.0
+Train Intercept: -47116.0765749
+Train Slope: 281.958838568
+The estimated price for a house with 2650 squarefeet is $700074.85
+Sould be 1:  0.0
+The RSS of predicting Prices based on Square Feet is : 1.20191835632e+15
+The estimated squarefeet for a house worth $800000.00 is 3004
+^[[BIntercept: 196298.521626
+Slope: 102683.922558
+The RSS of predicting Prices based on Bedrooms is : 4.90597140208e+14
+'
