@@ -56,7 +56,7 @@ print "Slope: " + str(sqft_slope)
 
 def get_regression_predictions(input_feature, intercept, slope):
     # calculate the predicted values:
-    
+    predicted_values = input_feature*slope + intercept
     return predicted_values
     
 my_house_sqft = 2650
@@ -65,10 +65,13 @@ print "The estimated price for a house with %d squarefeet is $%.2f" % (my_house_
 
 def get_residual_sum_of_squares(input_feature, output, intercept, slope):
     # First get the predictions
+    predict = input_feature*slope + intercept
 
     # then compute the residuals (since we are squaring it doesn't matter which order you subtract)
+    residuals = predict - output
 
     # square the residuals and add them up
+    RSS = residuals*residuals
 
     return(RSS)
     
@@ -79,13 +82,18 @@ print 'The RSS of predicting Prices based on Square Feet is : ' + str(rss_prices
 
 def inverse_regression_predictions(output, intercept, slope):
     # solve output = intercept + slope*input_feature for input_feature. Use this equation to compute the inverse predictions:
-
+    estimated_feature = (output - intercept)/slope
     return estimated_feature
-    
+
 my_house_price = 800000
 estimated_squarefeet = inverse_regression_predictions(my_house_price, sqft_intercept, sqft_slope)
 print "The estimated squarefeet for a house worth $%.2f is %d" % (my_house_price, estimated_squarefeet)
 
 # Estimate the slope and intercept for p# Compute RSS when using squarefeet on TEST data:redicting 'price' based on 'bedrooms'
+(pred_intercept, pred_slope) =  simple_linear_regression(test_data['bedroom'], test_data['price'])
+print "Intercept: " + str(pred_intercept)
+print "Slope: " + str(pred_slope)
 
 # Compute RSS when using bedrooms on TEST data:
+rss_prices_on_bdr = get_residual_sum_of_squares(test_data['bedroom'], test_data['price'], pred_intercept, pred_slope)
+print 'The RSS of predicting Prices based on Bedrooms is : ' + str(rss_prices_on_bdr)
