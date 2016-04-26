@@ -12,31 +12,13 @@ def get_numpy_data(data, features, output):
     ft = data.select_columns(features)
     ftmatrix = ft.to_numpy()
 
-#    out = gl.SArray(data[output])
-#    outarray = gl.to_numpy(out)
-
     outarray = np.asarray(data[output])
 
     return(ftmatrix, outarray)
 
-(example_features, example_output) = get_numpy_data(sales, ['sqft_living'], 'price')
-
-print example_features[0,:]
-print example_output[0]
-print example_output
-
-my_weights = np.array([1., 1.]) # the example weights
-my_features = example_features[0,] # we'll use the first data point
-predicted_value = np.dot(my_features, my_weights)
-print predicted_value
-
 def predict_output(fm, wei):
     predictions = np.dot(fm, wei)
     return(predictions)
-
-test_predictions = predict_output(example_features, my_weights)
-print test_predictions[0] # should be 1181.0
-print test_predictions[1] # should be 2571.0
 
 def feature_derivative(errors, feature):
     dev = np.dot(errors, feature)
@@ -74,15 +56,16 @@ initial_weights = np.array([-47000., 1.])
 step_size = 7e-12
 tolerance = 2.5e7
 
-simple_weights = regression_gradient_descent(simple_feature_matrix, output,initial_weights, step_size,tolerance)
+weights1 = regression_gradient_descent(simple_feature_matrix, output,initial_weights, step_size,tolerance)
 
-predict1 = predict_output(simple_feature_matrix,simple_weights)
+(feature_matrix1, output) = get_numpy_data(test_data, simple_features, my_output)
+predict1 = predict_output(feature_matrix1,weights1)
 
 #Q1
-print "What is the value of the weight for sqft_living -- the second element of ‘simple_weights’ ", simple_weights
+print "Q1: What is the value of the weight for sqft_living -- the second element of ‘simple_weights’ " + weights1[1]
 
 #Q2
-print "What is the predicted price for the 1st house in the Test data set for model 1", predict1
+print "Q2: What is the predicted price for the 1st house in the Test data set for model 1" + predict1[0]
 
 #Q3, Q4 & Q5
 model_features = ['sqft_living', 'sqft_living15']
@@ -94,13 +77,18 @@ tolerance = 1e9
 
 weights2 = regression_gradient_descent(model_features, output,initial_weights, step_size,tolerance)
 
+(feature_matrix2, output) = get_numpy_data(test_data, simple_features, my_output)
 predict2 = predict_output(model_features,weights2)
 
 #Q3
-print "What is the predicted price for the 1st house in the TEST data set for model 2 (round to nearest dollar)?"
+print "Q3: What is the predicted price for the 1st house in the TEST data set for model 2 (round to nearest dollar)?" \
+      + predict2[0]
 
+d1 = output - predict1
+d2 = output - predict2
 #Q4
-print "Which estimate was closer to the true price for the 1st house on the TEST data set, model 1 or model 2?"
+print "Q4: Which estimate was closer to the true price for the 1st house on the TEST data set, model 1 or model 2?" \
+      + d1[0] + d2[0]
 
 #Q5
-print "Quiz Question: Which model (1 or 2) has lowest RSS on all of the TEST data? "
+print "Q5: Quiz Question: Which model (1 or 2) has lowest RSS on all of the TEST data? " + d1[0] + d2[0]
