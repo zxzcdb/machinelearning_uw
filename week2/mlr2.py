@@ -55,10 +55,8 @@ def regression_gradient_descent(feature_matrix, output, initial_weights, step_si
 
         for i in range(len(weights)):
             par_der = feature_derivative(errors,feature_matrix[:, i])
-
-            gradient = gradient + par_der * par_der
-
-            # update the weight based on step size and derivative:
+            gradient_sum_squares = gradient_sum_squares + par_der * par_der
+            weights[i] = weights[i] + step_size * par_der
 
         gradient_magnitude = sqrt(gradient_sum_squares)
         if gradient_magnitude < tolerance:
