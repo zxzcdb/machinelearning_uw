@@ -1,6 +1,6 @@
 import graphlab as gl
 import numpy as np
-import sqrt from math
+from math import sqrt 
 
 sales = gl.SFrame('kc_house_data.gl/')
 
