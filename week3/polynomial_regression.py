@@ -67,7 +67,7 @@ model3.get("coefficients")
 plt.plot(poly3_data['power_1'],poly3_data['price'],'.',
         poly3_data['power_1'], model3.predict(poly3_data),'-')
 
-# Changing the data and re-learning¶
+# Changing the data and relearning
 
 (sub_1, sub_2) = sales.random_split(0.5, seed=0)
 sub_1_1, sub_1_2 = sub_1.random_split(0.5, seed=0)
@@ -82,7 +82,7 @@ def polynomial_fit(data, degree):
     model = graphlab.linear_regression.create(poldata, target = 'price', features = feature, validation_set = None)
     model.get("coefficients")
 
-    plt.plot(poldata['power_1'],poly3_data['price'],'.',poldata['power_1'], model.predict(poldata),'-')
+    plt.plot(poldata['power_1'],polydata['price'],'.',poldata['power_1'], model.predict(poldata),'-')
 
 polynomial_fit(sub_1_1, 15)
 
@@ -91,6 +91,12 @@ polynomial_fit(sub_1_2, 15)
 polynomial_fit(sub_2_1, 15)
 
 polynomial_fit(sub_2_2, 15)
+
+# Quiz Question: Is the sign (positive or negative) for power_15 the same in all four models?
+# No
+
+# Quiz Question: True/False the plotted fitted lines look the same in all four plots
+# F
 
 #Selecting a Polynomial Degree
 train_validation_data, test_data =sales.random_split(0.9, seed=1)
@@ -107,7 +113,7 @@ for degree in range(1,15+1):
     poldata['price'] = train_data['price']
     model = graphlab.linear_regression.create(poldata, target = 'price', features = feature, verbose = False, validation_set = None)
 
-    model.get("cofficients")
+    model.get("coefficients")
 
     valdata = polynomial_sframe(validation_data['sqft_living'], degree)
     valdata['price'] = validation_data['price']
