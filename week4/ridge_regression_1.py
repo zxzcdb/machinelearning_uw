@@ -73,6 +73,20 @@ model_co(model3)
 model_co(model4)
 #plt.plot(poldata1['power_1'],poldata1['price'],'.',poldata1['power_1'], model1.predict(poldata1),'-')
 
+# Large penalty
+l2 = 1e5
+
+model1 = poly_regression(poldata1,l2)
+model2 = poly_regression(poldata2,l2)
+model3 = poly_regression(poldata3,l2)
+model4 = poly_regression(poldata4,l2)
+
+model_co(model1)
+model_co(model2)
+model_co(model3)
+model_co(model4)
+
+# K-fold cross validation
 (train_valid, test) = sales.random_split(.9, seed=1)
 train_valid_shuffled = gl.toolkits.cross_validation.shuffle(train_valid, random_seed=1)
 
