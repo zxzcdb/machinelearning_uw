@@ -6,49 +6,33 @@ from math import log
 # Week1: Simple Linear Regression
 def simple_linear_regression(input, output):
     num = input.size()
-
     in_sum = input.sum()
     out_sum = output.sum()
-
     pro = input * output
     pro_sum = pro.sum()
-
     in_sq = input * input
     in_sq_sum = in_sq.sum()
-
     avi = input.mean()
     avo = output.mean()
-
-    # use the formula for the slope
     slope = (pro_sum - num*avi*avo)/(in_sq_sum-num*avi*avi)
-
-    # use the formula for the intercept
     intercept = avo - avi*slope
-
     return (intercept, slope)
 
 # Week2: Multiple Linear Regression: Assignment1
 def get_residual_sum_of_squares(model, data, outcome):
-
     prediction = model.predict(data)
-
     residuals = prediction - outcome
     RSS = residuals*residuals
     RSS = RSS.sum()
-
     return(RSS)
 
 # Week2: Multiple Linear Regression: Assignment2 Gradient Decent
 def get_numpy_data(data, features, output):
-
     data['constant'] = 1
-
     features = ['constant'] + features
     ft = data.select_columns(features)
     ftmatrix = ft.to_numpy()
-
     outarray = np.asarray(data[output])
-
     return(ftmatrix, outarray)
 
 def predict_output(fm, wei):
@@ -84,7 +68,15 @@ def polynomial_sframe(feature, degree):
     poly_sframe['power_1'] = feature
     if degree > 1:
         for power in range(2, degree+1):
-
             name = 'power_' + str(power)
             poly_sframe[name] = feature.apply(lambda x: x**power)
     return poly_sframe
+
+# Week 4: Ridge Regression
+def poly_regression(data, l2):
+    model = gl.linear_regression.create(data, target = 'price',
+                                           l2_penalty = l2, validation_set = None)
+    return(model)
+
+def model_co(model):
+    print(model.get("coefficients"))
