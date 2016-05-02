@@ -1,5 +1,7 @@
+********Small Penalty**********
+Linear regression:
 --------------------------------------------------------
-Number of examples          : 19396
+Number of examples          : 21613
 Number of features          : 15
 Number of unpacked features : 15
 Number of coefficients    : 16
@@ -8,93 +10,291 @@ Starting Newton Method
 +-----------+----------+--------------+--------------------+---------------+
 | Iteration | Passes   | Elapsed Time | Training-max_error | Training-rmse |
 +-----------+----------+--------------+--------------------+---------------+
-| 1         | 2        | 1.030868     | 2593591.890943     | 246744.061887 |
+| 1         | 2        | 1.035736     | 2662555.738658     | 245656.462166 |
 +-----------+----------+--------------+--------------------+---------------+
 SUCCESS: Optimal solution found.
 
+Q1: What is the value of coefficient of Power_1?
 +-------------+-------+--------------------+-------------------+
 |     name    | index |       value        |       stderr      |
 +-------------+-------+--------------------+-------------------+
-| (intercept) |  None |   168762.349005    |    364258.96387   |
-|   power_1   |  None |    127.6067699     |   1576.56771637   |
-|   power_2   |  None |  0.0808264280869   |   2.84286067468   |
-|   power_3   |  None | -8.9597415965e-05  |  0.00284014959115 |
-|   power_4   |  None | 3.94854265588e-08  | 1.77633500432e-06 |
-|   power_5   |  None | -6.28049000915e-12 |  7.521903585e-10  |
-|   power_6   |  None | 1.87755056341e-16  | 2.29808766627e-13 |
-|   power_7   |  None | 3.37222279335e-20  |  5.2880028443e-17 |
-|   power_8   |  None | -7.74788974152e-25 | 9.13576285614e-21 |
-|   power_9   |  None | -1.84290529474e-28 | 1.11898597604e-24 |
-|   power_10  |  None | -3.12139611485e-33 | 8.59649959452e-29 |
-|   power_11  |  None | 7.53167894191e-37  | 2.94029682202e-33 |
-|   power_12  |  None | 5.15808086505e-41  |  2.682057447e-37  |
-|   power_13  |  None | -1.74284681126e-45 | 2.75343582216e-41 |
-|   power_14  |  None | -3.91650562748e-49 | 1.14904206003e-45 |
-|   power_15  |  None | 1.76220660921e-53  | 1.85747092139e-50 |
+| (intercept) |  None |   167924.855861    |   932257.186892   |
+|   power_1   |  None |    103.09095592    |   4735.64035967   |
+|   power_2   |  None |   0.13460454755    |   9.85916588414   |
+|   power_3   |  None | -0.000129071363621 |  0.0111681951166  |
+|   power_4   |  None | 5.18928964915e-08  | 7.69612916365e-06 |
+|   power_5   |  None | -7.77169343059e-12 | 3.40375275378e-09 |
+|   power_6   |  None | 1.71144917832e-16  | 9.86487804671e-13 |
+|   power_7   |  None | 4.51177946027e-20  | 1.85595593561e-16 |
+|   power_8   |  None | -4.78840959928e-25 | 2.13680012359e-20 |
+|   power_9   |  None | -2.33343401694e-28 | 1.22638025544e-24 |
 +-------------+-------+--------------------+-------------------+
 [16 rows x 4 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+power_1 should be 103.09.
+Linear regression:
+--------------------------------------------------------
+Number of examples          : 5404
+Number of features          : 15
+Number of unpacked features : 15
+Number of coefficients    : 16
+Starting Newton Method
+--------------------------------------------------------
++-----------+----------+--------------+--------------------+---------------+
+| Iteration | Passes   | Elapsed Time | Training-max_error | Training-rmse |
++-----------+----------+--------------+--------------------+---------------+
+| 1         | 2        | 0.030851     | 2191984.900345     | 248699.117255 |
++-----------+----------+--------------+--------------------+---------------+
+SUCCESS: Optimal solution found.
 
-*** Observe overfitting
+Linear regression:
+--------------------------------------------------------
+Number of examples          : 5398
+Number of features          : 15
+Number of unpacked features : 15
+Number of coefficients    : 16
+Starting Newton Method
+--------------------------------------------------------
++-----------+----------+--------------+--------------------+---------------+
+| Iteration | Passes   | Elapsed Time | Training-max_error | Training-rmse |
++-----------+----------+--------------+--------------------+---------------+
+| 1         | 2        | 0.024939     | 1975178.190912     | 234533.610646 |
++-----------+----------+--------------+--------------------+---------------+
+SUCCESS: Optimal solution found.
+
+Linear regression:
+--------------------------------------------------------
+Number of examples          : 5409
+Number of features          : 15
+Number of unpacked features : 15
+Number of coefficients    : 16
+Starting Newton Method
+--------------------------------------------------------
++-----------+----------+--------------+--------------------+---------------+
+| Iteration | Passes   | Elapsed Time | Training-max_error | Training-rmse |
++-----------+----------+--------------+--------------------+---------------+
+| 1         | 2        | 0.021670     | 2283722.683933     | 251097.728054 |
++-----------+----------+--------------+--------------------+---------------+
+SUCCESS: Optimal solution found.
+
+Linear regression:
+--------------------------------------------------------
+Number of examples          : 5402
+Number of features          : 15
+Number of unpacked features : 15
+Number of coefficients    : 16
+Starting Newton Method
+--------------------------------------------------------
++-----------+----------+--------------+--------------------+---------------+
+| Iteration | Passes   | Elapsed Time | Training-max_error | Training-rmse |
++-----------+----------+--------------+--------------------+---------------+
+| 1         | 2        | 0.028660     | 2378292.372298     | 244341.293204 |
++-----------+----------+--------------+--------------------+---------------+
+SUCCESS: Optimal solution found.
+
+Coefficients of model_1 are: 
 +-------------+-------+--------------------+-------------------+
 |     name    | index |       value        |       stderr      |
 +-------------+-------+--------------------+-------------------+
-| (intercept) |  None |   -170240.042308   |   1411592.61749   |
-|      X1     |  None |    1247.5903822    |    8949.0727043   |
-|      X2     |  None |   -1.22460917631   |   23.6223213775   |
-|      X3     |  None | 0.000555254666021  |  0.0343323348721  |
-|      X4     |  None | -6.3826252134e-08  | 3.06009517221e-05 |
-|      X5     |  None | -2.20215967405e-11 | 1.74971542224e-08 |
-|      X6     |  None | 4.81834698374e-15  | 6.40397863516e-12 |
-|      X7     |  None | 4.21461560613e-19  | 1.35662037484e-15 |
-|      X8     |  None | -7.99880704774e-23 |        nan        |
-|      X9     |  None | -1.32365902106e-26 |        nan        |
-|     X10     |  None | 1.60197791774e-31  | 3.73514326634e-27 |
-|     X11     |  None | 2.39904342319e-34  |  8.5408523356e-31 |
-|     X12     |  None | 2.33354496631e-38  | 6.61760048392e-35 |
-|     X13     |  None | -1.79874123946e-42 | 5.29307498973e-39 |
-|     X14     |  None | -6.02862552282e-46 | 4.18217079002e-43 |
-|     X15     |  None | 4.39472609278e-50  | 1.24435452574e-47 |
+| (intercept) |  None |    9306.4606221    |   1255976.06157   |
+|   power_1   |  None |   585.865823394    |   6003.28876462   |
+|   power_2   |  None |  -0.397305895643   |   11.9613259026   |
+|   power_3   |  None | 0.000141470900599  |  0.0131345206929  |
+|   power_4   |  None | -1.52945989958e-08 | 8.84846297281e-06 |
+|   power_5   |  None | -3.79756325772e-13 | 3.83736176297e-09 |
+|   power_6   |  None | 5.97481763253e-17  | 1.08407665704e-12 |
+|   power_7   |  None | 1.06888504767e-20  | 1.93500977266e-16 |
+|   power_8   |  None | 1.59344027887e-25  | 1.89384579435e-20 |
+|   power_9   |  None | -6.92834984105e-29 |        nan        |
 +-------------+-------+--------------------+-------------------+
 [16 rows x 4 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+Coefficients of model_2 are: 
++-------------+-------+--------------------+-------------------+
+|     name    | index |       value        |       stderr      |
++-------------+-------+--------------------+-------------------+
+| (intercept) |  None |   -25115.9044254   |   1573017.12178   |
+|   power_1   |  None |    783.49380028    |   9293.98471763   |
+|   power_2   |  None |  -0.767759302942   |   23.3971636819   |
+|   power_3   |  None | 0.000438766369254  |  0.0331210085962  |
+|   power_4   |  None | -1.15169166858e-07 | 2.93724988829e-05 |
+|   power_5   |  None | 6.84281360981e-12  | 1.72037616446e-08 |
+|   power_6   |  None | 2.51195187082e-15  | 6.82484060777e-12 |
+|   power_7   |  None | -2.06440608259e-19 | 1.84509003318e-15 |
+|   power_8   |  None | -4.59673022352e-23 | 3.35295936015e-19 |
+|   power_9   |  None | -2.71279236963e-29 | 3.78708790458e-23 |
++-------------+-------+--------------------+-------------------+
+[16 rows x 4 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+Coefficients of model_3 are: 
++-------------+-------+--------------------+--------+
+|     name    | index |       value        | stderr |
++-------------+-------+--------------------+--------+
+| (intercept) |  None |   462426.565731    |  nan   |
+|   power_1   |  None |   -759.251842854   |  nan   |
+|   power_2   |  None |    1.0286700473    |  nan   |
+|   power_3   |  None | -0.000528264527386 |  nan   |
+|   power_4   |  None | 1.15422908385e-07  |  nan   |
+|   power_5   |  None | -2.26095948062e-12 |  nan   |
+|   power_6   |  None | -2.08214287571e-15 |  nan   |
+|   power_7   |  None | 4.08770475709e-20  |  nan   |
+|   power_8   |  None |  2.570791329e-23   |  nan   |
+|   power_9   |  None | 1.24311265196e-27  |  nan   |
++-------------+-------+--------------------+--------+
+[16 rows x 4 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+Coefficients of model_4 are: 
++-------------+-------+--------------------+-------------------+
+|     name    | index |       value        |       stderr      |
++-------------+-------+--------------------+-------------------+
+| (intercept) |  None |   -170240.032842   |   1543796.62885   |
+|   power_1   |  None |   1247.59034541    |   9978.42791287   |
+|   power_2   |  None |   -1.22460912177   |   26.7138477947   |
+|   power_3   |  None | 0.000555254626344  |  0.0392072641565  |
+|   power_4   |  None | -6.3826237386e-08  | 3.51264407588e-05 |
+|   power_5   |  None | -2.20215991142e-11 | 2.00572757169e-08 |
+|   power_6   |  None | 4.81834694285e-15  | 7.23449143456e-12 |
+|   power_7   |  None | 4.21461612787e-19  | 1.43057715883e-15 |
+|   power_8   |  None | -7.99880736276e-23 |        nan        |
+|   power_9   |  None | -1.32365897487e-26 |        nan        |
++-------------+-------+--------------------+-------------------+
+[16 rows x 4 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+********Large Penalty**********
+Linear regression:
+--------------------------------------------------------
+Number of examples          : 5404
+Number of features          : 15
+Number of unpacked features : 15
+Number of coefficients    : 16
+Starting Newton Method
+--------------------------------------------------------
++-----------+----------+--------------+--------------------+---------------+
+| Iteration | Passes   | Elapsed Time | Training-max_error | Training-rmse |
++-----------+----------+--------------+--------------------+---------------+
+| 1         | 2        | 0.023268     | 5978778.434729     | 374261.720860 |
++-----------+----------+--------------+--------------------+---------------+
+SUCCESS: Optimal solution found.
 
-Learned polynomial for degree 15:
-           15             14             13             12
-4.395e-50 x  - 6.029e-46 x  - 1.799e-42 x  + 2.334e-38 x 
-              11             10             9             8
- + 2.399e-34 x  + 1.602e-31 x  - 1.324e-26 x - 7.999e-23 x
-              7             6             5             4             3
- + 4.215e-19 x + 4.818e-15 x - 2.202e-11 x - 6.383e-08 x + 0.0005553 x
-          2
- - 1.225 x + 1248 x - 1.702e+05
-*** Ridge regression comes to rescue
+Linear regression:
+--------------------------------------------------------
+Number of examples          : 5398
+Number of features          : 15
+Number of unpacked features : 15
+Number of coefficients    : 16
+Starting Newton Method
+--------------------------------------------------------
++-----------+----------+--------------+--------------------+---------------+
+| Iteration | Passes   | Elapsed Time | Training-max_error | Training-rmse |
++-----------+----------+--------------+--------------------+---------------+
+| 1         | 2        | 0.028411     | 2984894.541944     | 323238.809634 |
++-----------+----------+--------------+--------------------+---------------+
+SUCCESS: Optimal solution found.
+
+Linear regression:
+--------------------------------------------------------
+Number of examples          : 5409
+Number of features          : 15
+Number of unpacked features : 15
+Number of coefficients    : 16
+Starting Newton Method
+--------------------------------------------------------
++-----------+----------+--------------+--------------------+---------------+
+| Iteration | Passes   | Elapsed Time | Training-max_error | Training-rmse |
++-----------+----------+--------------+--------------------+---------------+
+| 1         | 2        | 0.025920     | 3695342.767093     | 350033.521294 |
++-----------+----------+--------------+--------------------+---------------+
+SUCCESS: Optimal solution found.
+
+Linear regression:
+--------------------------------------------------------
+Number of examples          : 5402
+Number of features          : 15
+Number of unpacked features : 15
+Number of coefficients    : 16
+Starting Newton Method
+--------------------------------------------------------
++-----------+----------+--------------+--------------------+---------------+
+| Iteration | Passes   | Elapsed Time | Training-max_error | Training-rmse |
++-----------+----------+--------------+--------------------+---------------+
+| 1         | 2        | 0.029373     | 3601895.280124     | 323111.582889 |
++-----------+----------+--------------+--------------------+---------------+
+SUCCESS: Optimal solution found.
+
+Coefficients of model_1 are: 
 +-------------+-------+-------------------+-------------------+
 |     name    | index |       value       |       stderr      |
 +-------------+-------+-------------------+-------------------+
-| (intercept) |  None |   513667.087087   |   1866659.20871   |
-|      X1     |  None |   1.91040938244   |   11834.0580461   |
-|      X2     |  None |  0.00110058029175 |   31.2376412174   |
-|      X3     |  None | 3.12753987879e-07 |  0.0454003288564  |
-|      X4     |  None | 5.50067886825e-11 | 4.04660293766e-05 |
-|      X5     |  None | 7.20467557825e-15 | 2.31378541165e-08 |
-|      X6     |  None | 8.24977249384e-19 | 8.46848130513e-12 |
-|      X7     |  None | 9.06503223498e-23 | 1.79396511716e-15 |
-|      X8     |  None | 9.95683160453e-27 |        nan        |
-|      X9     |  None | 1.10838127982e-30 |        nan        |
-|     X10     |  None | 1.25315224143e-34 | 4.93927177541e-27 |
-|     X11     |  None | 1.43600781402e-38 | 1.12942363575e-30 |
-|     X12     |  None |  1.662699678e-42  | 8.75097016646e-35 |
-|     X13     |  None |  1.9398172453e-46 | 6.99944661762e-39 |
-|     X14     |  None |  2.2754148577e-50 | 5.53041119714e-43 |
-|     X15     |  None | 2.67948784897e-54 | 1.64550721333e-47 |
+| (intercept) |  None |   530317.024516   |   1890090.19151   |
+|   power_1   |  None |   2.58738875673   |   9034.21455077   |
+|   power_2   |  None |  0.00127414400592 |    18.000330944   |
+|   power_3   |  None | 1.74934226932e-07 |   0.019765845458  |
+|   power_4   |  None | 1.06022119097e-11 | 1.33158533722e-05 |
+|   power_5   |  None | 5.42247604482e-16 | 5.77475960841e-09 |
+|   power_6   |  None | 2.89563828343e-20 | 1.63140263499e-12 |
+|   power_7   |  None | 1.65000666351e-24 | 2.91195278612e-16 |
+|   power_8   |  None | 9.86081528409e-29 | 2.85000603886e-20 |
+|   power_9   |  None | 6.06589348254e-33 |        nan        |
 +-------------+-------+-------------------+-------------------+
 [16 rows x 4 columns]
-
-Learned polynomial for degree 15:
-           15             14            13             12
-2.679e-54 x  + 2.275e-50 x  + 1.94e-46 x  + 1.663e-42 x 
-              11             10             9             8
- + 1.436e-38 x  + 1.253e-34 x  + 1.108e-30 x + 9.957e-27 x
-              7            6             5             4             3
- + 9.065e-23 x + 8.25e-19 x + 7.205e-15 x + 5.501e-11 x + 3.128e-07 x
-             2
- + 0.001101 x + 1.91 x + 5.137e+05
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+Coefficients of model_2 are: 
++-------------+-------+-------------------+-------------------+
+|     name    | index |       value       |       stderr      |
++-------------+-------+-------------------+-------------------+
+| (intercept) |  None |   519216.897383   |   2167962.96521   |
+|   power_1   |  None |   2.04470474182   |   12809.1515268   |
+|   power_2   |  None |  0.0011314362684  |   32.2464286313   |
+|   power_3   |  None | 2.93074277549e-07 |  0.0456480218892  |
+|   power_4   |  None | 4.43540598453e-11 |  4.0481752482e-05 |
+|   power_5   |  None | 4.80849112204e-15 | 2.37105608016e-08 |
+|   power_6   |  None | 4.53091707826e-19 | 9.40612881847e-12 |
+|   power_7   |  None | 4.16042910575e-23 | 2.54293917341e-15 |
+|   power_8   |  None | 3.90094635128e-27 | 4.62111417353e-19 |
+|   power_9   |  None |  3.7773187602e-31 | 5.21943862496e-23 |
++-------------+-------+-------------------+-------------------+
+[16 rows x 4 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+Coefficients of model_3 are: 
++-------------+-------+-------------------+--------+
+|     name    | index |       value       | stderr |
++-------------+-------+-------------------+--------+
+| (intercept) |  None |   522911.518048   |  nan   |
+|   power_1   |  None |   2.26890421877   |  nan   |
+|   power_2   |  None |  0.00125905041842 |  nan   |
+|   power_3   |  None | 2.77552918155e-07 |  nan   |
+|   power_4   |  None |  3.2093309779e-11 |  nan   |
+|   power_5   |  None | 2.87573572364e-15 |  nan   |
+|   power_6   |  None | 2.50076112671e-19 |  nan   |
+|   power_7   |  None | 2.24685265906e-23 |  nan   |
+|   power_8   |  None | 2.09349983135e-27 |  nan   |
+|   power_9   |  None | 2.00435383296e-31 |  nan   |
++-------------+-------+-------------------+--------+
+[16 rows x 4 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+Coefficients of model_4 are: 
++-------------+-------+-------------------+-------------------+
+|     name    | index |       value       |       stderr      |
++-------------+-------+-------------------+-------------------+
+| (intercept) |  None |   513667.087087   |   2041482.90233   |
+|   power_1   |  None |   1.91040938244   |   13195.2548642   |
+|   power_2   |  None |  0.00110058029175 |   35.3258081465   |
+|   power_3   |  None | 3.12753987879e-07 |   0.051846828738  |
+|   power_4   |  None | 5.50067886825e-11 | 4.64504371162e-05 |
+|   power_5   |  None | 7.20467557825e-15 | 2.65233027965e-08 |
+|   power_6   |  None | 8.24977249384e-19 | 9.56673326956e-12 |
+|   power_7   |  None | 9.06503223498e-23 | 1.89176395105e-15 |
+|   power_8   |  None | 9.95683160453e-27 |        nan        |
+|   power_9   |  None | 1.10838127982e-30 |        nan        |
++-------------+-------+-------------------+-------------------+
+[16 rows x 4 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
