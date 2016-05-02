@@ -1,7 +1,11 @@
+#  source ~/test27/bin/activate
+
 import graphlab as gl
 import numpy as np
+import matplotlib as mpl
+mpl.use('TkAgg')
+import matplotlib.pyplot as plt
 from math import sqrt
-from math import log
 
 # Week1: Simple Linear Regression
 def simple_linear_regression(input, output):
@@ -75,15 +79,38 @@ def regression_gradient_descent(feature_matrix, output, initial_weights, step_si
 
 # Week 3: Performance Assessment
 def polynomial_sframe(feature, degree):
-    if degree < 1:
-        print "ERROR: degree < 1."
+    # assume that degree >= 1
+    if degree < 0:
+        print("ERROR: degree should be >=0.")
+        sys.exit(1)
+
+    # initialize the SFrame:
     poly_sframe = gl.SFrame()
+    # and set poly_sframe['power_1'] equal to the passed feature
     poly_sframe['power_1'] = feature
+
+    # first check if degree > 1
     if degree > 1:
+        # then loop over the remaining degrees:
+        # range usually starts at 0 and stops at the endpoint-1. We want it to start at 2 and stop at degree
         for power in range(2, degree+1):
+            # first we'll give the column a name:
             name = 'power_' + str(power)
+            # then assign poly_sframe[name] to the appropriate power of feature
             poly_sframe[name] = feature.apply(lambda x: x**power)
+
     return poly_sframe
+
+def polynomial_fit(data, degree):
+    poldata = polynomial_sframe(data['sqft_living'],degree)
+    feature = poldata.column_names()
+
+    poldata['price'] = data['price']
+
+    model = gl.linear_regression.create(poldata, target = 'price', features = feature, validation_set = None)
+    model.get("coefficients")
+
+    plt.plot(poldata['power_1'],poldata['price'],'.',poldata['power_1'], model.predict(poldata),'-')
 
 # Week 4: Ridge Regression
 def poly_regression(data, l2):
