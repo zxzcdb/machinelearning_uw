@@ -17,6 +17,19 @@ def simple_linear_regression(input, output):
     slope = (pro_sum - num*avi*avo)/(in_sq_sum-num*avi*avi)
     intercept = avo - avi*slope
     return (intercept, slope)
+    
+def lr_get_residual_sum_of_squares(input, output, intercept, slope):
+    predict = input * slope + intercept
+
+    residuals = predict - output
+    rss = residuals*residuals
+    RSS = rss.sum()
+
+    return(RSS)
+    
+def get_regression_predictions(input, intercept, slope):
+    predicted_values = input*slope + intercept
+    return predicted_values
 
 # Week2: Multiple Linear Regression: Assignment1
 def get_residual_sum_of_squares(model, data, outcome):
