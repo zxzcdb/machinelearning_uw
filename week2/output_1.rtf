@@ -1,0 +1,121 @@
+Linear regression:
+--------------------------------------------------------
+Number of examples          : 17384
+Number of features          : 3
+Number of unpacked features : 3
+Number of coefficients    : 4
+Starting Newton Method
+--------------------------------------------------------
++-----------+----------+--------------+--------------------+---------------+
+| Iteration | Passes   | Elapsed Time | Training-max_error | Training-rmse |
++-----------+----------+--------------+--------------------+---------------+
+| 1         | 2        | 1.032048     | 4146407.600631     | 258679.804477 |
++-----------+----------+--------------+--------------------+---------------+
+SUCCESS: Optimal solution found.
+
+Weights of example train model is:  +-------------+-------+----------------+---------------+
+|     name    | index |     value      |     stderr    |
++-------------+-------+----------------+---------------+
+| (intercept) |  None | 87910.0724924  |  7873.3381434 |
+| sqft_living |  None | 315.403440552  | 3.45570032585 |
+|   bedrooms  |  None | -65080.2155528 | 2717.45685442 |
+|  bathrooms  |  None | 6944.02019265  | 3923.11493144 |
++-------------+-------+----------------+---------------+
+[4 rows x 4 columns]
+
+Prediction of example train model is (should be 271789.505878):  271789.505878
+RSS of example train model is (should be 2.7376153833e+14): 2.7376153833e+14
+
+Mean of bedrooms squared is:         12.4466777016
+Mean of bedrooms time bathrooms is:  7.50390163159
+Mean of log squared feet living is:  7.55027467965
+Mean of lat plus long is:            -74.6533349722
+Linear regression:
+--------------------------------------------------------
+Number of examples          : 17384
+Number of features          : 5
+Number of unpacked features : 5
+Number of coefficients    : 6
+Starting Newton Method
+--------------------------------------------------------
++-----------+----------+--------------+--------------------+---------------+
+| Iteration | Passes   | Elapsed Time | Training-max_error | Training-rmse |
++-----------+----------+--------------+--------------------+---------------+
+| 1         | 2        | 0.059528     | 4074878.213096     | 236378.596455 |
++-----------+----------+--------------+--------------------+---------------+
+SUCCESS: Optimal solution found.
+
+Linear regression:
+--------------------------------------------------------
+Number of examples          : 17384
+Number of features          : 6
+Number of unpacked features : 6
+Number of coefficients    : 7
+Starting Newton Method
+--------------------------------------------------------
++-----------+----------+--------------+--------------------+---------------+
+| Iteration | Passes   | Elapsed Time | Training-max_error | Training-rmse |
++-----------+----------+--------------+--------------------+---------------+
+| 1         | 2        | 0.071312     | 4014170.932927     | 235190.935428 |
++-----------+----------+--------------+--------------------+---------------+
+SUCCESS: Optimal solution found.
+
+Linear regression:
+--------------------------------------------------------
+Number of examples          : 17384
+Number of features          : 9
+Number of unpacked features : 9
+Number of coefficients    : 10
+Starting Newton Method
+--------------------------------------------------------
++-----------+----------+--------------+--------------------+---------------+
+| Iteration | Passes   | Elapsed Time | Training-max_error | Training-rmse |
++-----------+----------+--------------+--------------------+---------------+
+| 1         | 2        | 0.031974     | 3193229.177894     | 228200.043155 |
++-----------+----------+--------------+--------------------+---------------+
+SUCCESS: Optimal solution found.
+
+Coefficients of model1 is:  +-------------+-------+----------------+---------------+
+|     name    | index |     value      |     stderr    |
++-------------+-------+----------------+---------------+
+| (intercept) |  None | -56140675.7444 | 1649985.42028 |
+| sqft_living |  None | 310.263325778  | 3.18882960408 |
+|   bedrooms  |  None | -59577.1160682 | 2487.27977322 |
+|  bathrooms  |  None | 13811.8405418  | 3593.54213297 |
+|     lat     |  None | 629865.789485  | 13120.7100323 |
+|     long    |  None | -214790.285186 | 13284.2851607 |
++-------------+-------+----------------+---------------+
+[6 rows x 4 columns]
+
+Coefficients of model2 is:  +----------------+-------+----------------+---------------+
+|      name      | index |     value      |     stderr    |
++----------------+-------+----------------+---------------+
+|  (intercept)   |  None | -54410676.1152 | 1650405.16541 |
+|  sqft_living   |  None | 304.449298057  | 3.20217535637 |
+|    bedrooms    |  None | -116366.043231 | 4805.54966546 |
+|   bathrooms    |  None | -77972.3305135 | 7565.05991091 |
+|      lat       |  None | 625433.834953  | 13058.3530972 |
+|      long      |  None | -203958.60296  | 13268.1283711 |
+| bed_bath_rooms |  None | 26961.6249092  | 1956.36561555 |
++----------------+-------+----------------+---------------+
+[7 rows x 4 columns]
+
+Coefficients of model3 is:  +------------------+-------+----------------+---------------+
+|       name       | index |     value      |     stderr    |
++------------------+-------+----------------+---------------+
+|   (intercept)    |  None | -52974974.0602 |  1615194.9439 |
+|   sqft_living    |  None | 529.196420564  | 7.69913498511 |
+|     bedrooms     |  None | 28948.5277313  | 9395.72889106 |
+|    bathrooms     |  None |  65661.207231  | 10795.3380703 |
+|       lat        |  None | 704762.148408  | 1292011141.66 |
+|       long       |  None | -137780.01994  | 1292011141.57 |
+|  bed_bath_rooms  |  None | -8478.36410518 | 2858.95391257 |
+| bedrooms_squared |  None | -6072.38466067 | 1494.97042777 |
+| log_sqft_living  |  None | -563467.784269 | 17567.8230814 |
+|  lat_plus_long   |  None | -83217.1979248 | 1292011141.58 |
++------------------+-------+----------------+---------------+
+[10 rows x 4 columns]
+
+RSS of model1 is:  9.71328233544e+14
+RSS of model2 is:  9.61592067856e+14
+RSS of model3 is:  9.05276314555e+14
