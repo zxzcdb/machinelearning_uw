@@ -2,6 +2,7 @@
 
 import graphlab
 from math import log
+from regression import get_residual_sum_of_squares
 
 sales = graphlab.SFrame('kc_house_data.gl/')
 
@@ -12,23 +13,13 @@ example_model = graphlab.linear_regression.create(train_data, target = 'price', 
                                                   validation_set = None)
 
 example_weight_summary = example_model.get("coefficients")
-print example_weight_summary
+print "Weights of example train model is: ", example_weight_summary
 
 example_predictions = example_model.predict(train_data)
-print example_predictions[0] # should be 271789.505878
-
-def get_residual_sum_of_squares(model, data, outcome):
-    # First get the predictions
-    prediction = model.predict(data)
-    # Then compute the residuals/errors
-    residuals = prediction - outcome
-    # Then square and add them up
-    RSS = residuals*residuals
-    RSS = RSS.sum()
-    return(RSS)
+print "Prediction of example train model is (should be 271789.505878): ", example_predictions[0] # should be 271789.505878
 
 rss_example_train = get_residual_sum_of_squares(example_model, test_data, test_data['price'])
-print rss_example_train # should be 2.7376153833e+14
+print "RSS of example train model is (should be 2.7376153833e+14):", rss_example_train # should be 2.7376153833e+14
 
 train_data['bedrooms_squared'] = train_data['bedrooms'].apply(lambda x: x**2)
 test_data['bedrooms_squared'] = test_data['bedrooms'].apply(lambda x: x**2)
@@ -46,10 +37,10 @@ m2= test_data['bed_bath_rooms'].mean()
 m3= test_data['log_sqft_living'].mean()
 m4= test_data['lat_plus_long'].mean()
 
-print m1
-print m2
-print m3
-print m4
+print "Mean of bedrooms squared is:        ", m1
+print "Mean of bedrooms time bathrooms is: ", m2
+print "Mean of log squared feet living is: ", m3
+print "Mean of lat plus long is:           ", m4
 
 model_1_features = ['sqft_living', 'bedrooms', 'bathrooms', 'lat', 'long']
 model_2_features = model_1_features + ['bed_bath_rooms']
@@ -62,10 +53,14 @@ model2 = graphlab.linear_regression.create(train_data, target = 'price', feature
 model3 = graphlab.linear_regression.create(train_data, target = 'price', features = model_3_features,
                                                   validation_set = None)
 
-model1.coefficients
-model2.coefficients
-model3.coefficients
+print "Coefficients of model1 is: ", model1.coefficients
+print "Coefficients of model2 is: ", model2.coefficients
+print "Coefficients of model3 is: ", model3.coefficients
 
 RSS1 = get_residual_sum_of_squares(model1, train_data, train_data['price'])
 RSS2 = get_residual_sum_of_squares(model2, train_data, train_data['price'])
 RSS3 = get_residual_sum_of_squares(model3, train_data, train_data['price'])
+
+print "RSS of model1 is: ", RSS1
+print "RSS of model2 is: ", RSS2
+print "RSS of model3 is: ", RSS3
