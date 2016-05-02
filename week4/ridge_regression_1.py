@@ -2,15 +2,15 @@
 
 from regression import polynomial_sframe
 from regression import ridge_regression
-from regression import ridge_regression_gradient_descent
 from regression import model_co
 import graphlab as gl
-import matplotlib as mpl
-import numpy as np
+import matplotlib.pyplot as plt
 
 sales = gl.SFrame('kc_house_data.gl/')
 
 sales = sales.sort(['sqft_living','price'])
+
+print "********Small Penalty**********"
 
 L2_small_penalty = 1e-5
 
@@ -19,6 +19,8 @@ poldata = polynomial_sframe(sales['sqft_living'],15)
 poldata['price'] = sales['price']
 
 model0 = ridge_regression(poldata,L2_small_penalty)
+
+print "Q1: What is the value of coefficient of Power_1?"
 
 model0.get("coefficients")
 # power_1: 103.09
@@ -46,12 +48,13 @@ model_co(model1)
 model_co(model2)
 model_co(model3)
 model_co(model4)
-#plt.plot(poldata1['power_1'],poldata1['price'],'.',poldata1['power_1'], model1.predict(poldata1),'-')
+plt.plot(poldata1['power_1'],poldata1['price'],'.',poldata1['power_1'], model1.predict(poldata1),'-')
 
 (train_valid, test) = sales.random_split(.9, seed=1)
 train_valid_shuffled = gl.toolkits.cross_validation.shuffle(train_valid, random_seed=1)
 
 # Large penalty
+print "********Large Penalty**********"
 l2 = 1e5
 
 model1 = ridge_regression(poldata1,l2)
