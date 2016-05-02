@@ -29,7 +29,7 @@ def lr_get_residual_sum_of_squares(input, output, intercept, slope):
     rss = residuals*residuals
     RSS = rss.sum()
 
-    return(RSS)
+    return RSS
     
 def get_regression_predictions(input, intercept, slope):
     predicted_values = input*slope + intercept
@@ -41,7 +41,7 @@ def get_residual_sum_of_squares(model, data, outcome):
     residuals = prediction - outcome
     RSS = residuals*residuals
     RSS = RSS.sum()
-    return(RSS)
+    return RSS
 
 # Week2: Multiple Linear Regression: Assignment2 Gradient Decent
 def get_numpy_data(data, features, output):
@@ -54,11 +54,11 @@ def get_numpy_data(data, features, output):
 
 def predict_output(fm, wei):
     predictions = np.dot(fm, wei)
-    return(predictions)
+    return predictions 
 
 def feature_derivative(errors, feature):
     der = np.dot(feature, errors)*2
-    return(der)
+    return der
 
 def regression_gradient_descent(feature_matrix, output, initial_weights, step_size, tolerance):
     converged = False
@@ -75,7 +75,7 @@ def regression_gradient_descent(feature_matrix, output, initial_weights, step_si
         gradient_magnitude = sqrt(gradient_sum_squares)
         if gradient_magnitude < tolerance:
             converged = True
-    return(weights)
+    return weights
 
 # Week 3: Performance Assessment
 def polynomial_sframe(feature, degree):
@@ -134,3 +134,26 @@ def k_fold_cross_validation(k, l2_penalty, data, output_name, features_list):
                                             l2_penalty=l2_penalty,validation_set=None)
         rss = get_residual_sum_of_squares(model, vali_data, vali_data[output_name])
         return rss
+
+
+def feature_derivative_ridge(errors, feature, weight, l2_penalty, feature_is_constant):
+    if feature_is_constant is True:
+        derivative = np.dot(errors, feature)*2
+    else:
+        derivative = np.dot(errors, feature)*2 + 2*l2_penalty*weight
+    return derivative
+
+def ridge_regression_gradient_descent(feature_matrix, output, initial_weights, step_size, l2_penalty, max_iterations=100):
+    weights = np.array(initial_weights) # make sure it's a numpy array
+    for i in range(0, max_iterations):
+        prediction = predict_output(feature_matrix, weights)
+        errors = prediction - output
+        for i in xrange(len(weights)): # loop over each weight
+            derivative = feature_derivative(errors,feature_matrix[:,i])
+            weights[i] = weights[i] - step_size * derivative
+    return weights
+
+def get_simple_residuals(prediction, output):
+    res = prediction - output
+    rs = res * res
+    return rs.sum()
