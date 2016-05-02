@@ -115,7 +115,7 @@ def polynomial_fit(data, degree):
 # Week 4: Observe Overfit
 def slice_data(n,k,i):
     # i starts with 0.
-    if i <0:
+    if i < 0:
         print "ERROR: i < 0!"
     start = (n*i)/k
     end = (n*(i+1))/k-1
@@ -132,38 +132,5 @@ def k_fold_cross_validation(k, l2_penalty, data, output_name, features_list):
         vali_data = data[start:end]
         model = gl.linear_regression.create(train_data, target='price',
                                             l2_penalty=l2_penalty,validation_set=None)
-        rss = get_residual_sum_of_squares(model, vali_data, output_name)
+        rss = get_residual_sum_of_squares(model, vali_data, vali_data[output_name])
         return rss
-
-def ridge_regression_gradient_descent(feature_matrix, output, initial_weights, step_size, l2_penalty,
-                                      max_iterations=100, verbose=False):
-
-    weights = np.array(initial_weights)  # make sure it's a numpy array
-
-    if verbose is True:
-        print "initial weights: %s", str(weights)
-
-    # while not reached maximum number of iterations:
-    for iter in range(0, max_iterations):
-        # compute the predictions based on feature_matrix and weights using your predict_output() function
-        test_predictions = predict_output(feature_matrix, weights)
-        # compute the errors as predictions - output
-        errors = test_predictions - output
-
-        for i in xrange(len(weights)):  # loop over each weight
-            # Recall that feature_matrix[:,i] is the feature column associated with weights[i]
-            # compute the derivative for weight[i].
-            # (Remember: when i=0, you are computing the derivative of the constant!)
-            if i == 0:
-                is_constant = True
-            else:
-                is_constant = False
-            derivative = feature_derivative_ridge(errors, feature_matrix[:, i], weights[i], l2_penalty, is_constant)
-
-            # subtract the step size times the derivative from the current weight
-            weights[i] = weights[i] - derivative * step_size
-
-        if verbose is True:
-            print("iteration = %d, derivative = %f, weights = %s" % (iter, derivative, str(weights)))
-
-    return weights
