@@ -2,7 +2,7 @@
 
 import graphlab
 from regression import simple_linear_regression
-from regression import get_residual_sum_of_squares
+from regression import lr_get_residual_sum_of_squares
 from regression import get_regression_predictions
 
 sales = graphlab.SFrame('kc_house_data.gl/')
@@ -29,7 +29,7 @@ estimated_price = get_regression_predictions(my_house_sqft, sqft_intercept, sqft
 
 print "The estimated price for a house with %d squarefeet is $%.2f" % (my_house_sqft, estimated_price)
 
-print "Sould be 0: ", get_residual_sum_of_squares(test_feature, test_output, test_intercept, test_slope)
+print "Sould be 0: ", lr_get_residual_sum_of_squares(test_feature, test_output, test_intercept, test_slope)
 
-rss_prices_on_sqft = get_residual_sum_of_squares(train_data['sqft_living'], train_data['price'], sqft_intercept, sqft_slope)
+rss_prices_on_sqft = lr_get_residual_sum_of_squares(train_data['sqft_living'], train_data['price'], sqft_intercept, sqft_slope)
 print 'The RSS of predicting Prices based on Square Feet is : ' + str(rss_prices_on_sqft)
