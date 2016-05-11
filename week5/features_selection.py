@@ -31,7 +31,7 @@ model_all = gl.linear_regression.create(sales, target='price', features=all_feat
 coef = model_all.get("coefficients")
 print coef
 print coef[coef["value"]!=0]
-print "Number of non-zero coefficients: %d" % len(coef[coef["value"]!=0])
+print "Number of non-zero coefficients: " % len(coef[coef["value"]!=0])
 
 # Selecting an L1 penalty
 print("*** Selecting an L1 penalty")
@@ -48,8 +48,8 @@ for l1_penalty in np.logspace(1,7,num=13):
                                               l2_penalty=0., l1_penalty=l1_penalty,
                                               verbose=False)
     rss = get_residual_sum_of_squares(model, validation, validation['price'])
-    print("l1_penalty = %f, rss = %f" % (l1_penalty, rss))
-    result.append("l1_penalty = %f, rss = %f" % (l1_penalty, rss))
+    print("l1_penalty = , rss = " % (l1_penalty, rss))
+    result.append("l1_penalty = , rss = " % (l1_penalty, rss))
     if lowest_rss is None:
         lowest_rss = rss
         best_l1_penalty = l1_penalty
@@ -62,14 +62,14 @@ for l1_penalty in np.logspace(1,7,num=13):
 for r in result:
     print(r)
 
-print "best l1_penalty = %f", best_l1_penalty
+print "best l1_penalty = ", best_l1_penalty
 
 rss = get_residual_sum_of_squares(best_model, testing, testing['price'])
 
-print("testing: l1_penalty = %f, rss = %f", (best_l1_penalty, rss))
+print("testing: l1_penalty = , rss = ", (best_l1_penalty, rss))
 coef = best_model.get("coefficients")
 nonzero_coef = coef[coef["value"]!=0]
-print "Number of non-zero coefficients: %d", len(nonzero_coef)
+print "Number of non-zero coefficients: ", len(nonzero_coef)
 print nonzero_coef
 
 # Limit the number of nonzero weights
@@ -87,8 +87,8 @@ for l1_penalty in l1_penalty_values:
                                               verbose=False)
     coef = model.get("coefficients")
     nonzero_coef = coef[coef["value"]!=0]
-    print("L1 penalty: %f" % l1_penalty)
-    print("  Number of non-zero coefficients: %d" % len(nonzero_coef["value"]))
+    print("L1 penalty: " % l1_penalty)
+    print("  Number of non-zero coefficients: " % len(nonzero_coef["value"]))
 
     if len(nonzero_coef["value"]) > max_nonzeros:
         l1_penalty_min = l1_penalty
@@ -96,8 +96,8 @@ for l1_penalty in l1_penalty_values:
     if l1_penalty_max is None and len(nonzero_coef["value"]) < max_nonzeros:
         l1_penalty_max = l1_penalty
 
-print "Max L1 penalty: %f", l1_penalty_max
-print "Min L1 penalty: %f", l1_penalty_min
+print "Max L1 penalty: ", l1_penalty_max
+print "Min L1 penalty: ", l1_penalty_min
 
 print("*** Exploring the narrow range of values to find the solution with the right number of non-zeros that has lowest RSS on the validation set")
 
@@ -114,14 +114,14 @@ for l1_penalty in l1_penalty_values:
 
     coef = model.get("coefficients")
     nonzero_coef = coef[coef["value"]!=0]
-    print "L1 penalty: %f", l1_penalty
-    print "  Number of non-zero coefficients: %d", len(nonzero_coef["value"])
+    print "L1 penalty: ", l1_penalty
+    print "  Number of non-zero coefficients: ", len(nonzero_coef["value"])
     sparsity = len(coef["value"]) - len(nonzero_coef["value"])
-    print "  Sparsity: %d", sparsity
+    print "  Sparsity: ", sparsity
 
     if len(nonzero_coef["value"]) == max_nonzeros:
         rss = get_residual_sum_of_squares(model, validation, validation['price'])
-        print "  Validation RSS = %f", rss
+        print "  Validation RSS = ", rss
         if lowest_rss is None:
             lowest_rss = rss
             best_l1_penalty = l1_penalty
@@ -134,11 +134,11 @@ for l1_penalty in l1_penalty_values:
 for r in result:
     print r
 
-print "Best L1 penalty = %f", best_l1_penalty
-print "RSS = %f", lowest_rss
+print "Best L1 penalty = ", best_l1_penalty
+print "RSS = ", lowest_rss
 
 rss = get_residual_sum_of_squares(best_model, testing, testing['price'])
 
-print "testing: l1_penalty = %f, rss = %f", (best_l1_penalty, rss)
+print "testing: l1_penalty = , rss = ", (best_l1_penalty, rss)
 coef = best_model.get("coefficients")
 print coef[coef["value"]!=0]
