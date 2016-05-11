@@ -1,0 +1,189 @@
+*** Learn regression weights with L1 penalty
++------------------+-------+---------------+--------+
+|       name       | index |     value     | stderr |
++------------------+-------+---------------+--------+
+|   (intercept)    |  None |  274873.05595 |  None  |
+|     bedrooms     |  None |      0.0      |  None  |
+| bedrooms_square  |  None |      0.0      |  None  |
+|    bathrooms     |  None | 8468.53108691 |  None  |
+|   sqft_living    |  None | 24.4207209824 |  None  |
+| sqft_living_sqrt |  None | 350.060553386 |  None  |
+|     sqft_lot     |  None |      0.0      |  None  |
+|  sqft_lot_sqrt   |  None |      0.0      |  None  |
+|      floors      |  None |      0.0      |  None  |
+|  floors_square   |  None |      0.0      |  None  |
++------------------+-------+---------------+--------+
+[18 rows x 4 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
++------------------+-------+---------------+--------+
+|       name       | index |     value     | stderr |
++------------------+-------+---------------+--------+
+|   (intercept)    |  None |  274873.05595 |  None  |
+|    bathrooms     |  None | 8468.53108691 |  None  |
+|   sqft_living    |  None | 24.4207209824 |  None  |
+| sqft_living_sqrt |  None | 350.060553386 |  None  |
+|      grade       |  None | 842.068034898 |  None  |
+|    sqft_above    |  None | 20.0247224171 |  None  |
++------------------+-------+---------------+--------+
+[? rows x 4 columns]
+Note: Only the head of the SFrame is printed. This SFrame is lazily evaluated.
+You can use len(sf) to force materialization.
+Number of non-zero coefficients:  6
+*** Selecting an L1 penalty
+('l1_penalty = ', 10.0, ', rss = ', 625766285142459.9)
+('l1_penalty = ', 31.622776601683793, ', rss = ', 625766285362394.1)
+('l1_penalty = ', 100.0, ', rss = ', 625766286057885.0)
+('l1_penalty = ', 316.22776601683796, ', rss = ', 625766288257224.6)
+('l1_penalty = ', 1000.0, ', rss = ', 625766295212186.8)
+('l1_penalty = ', 3162.2776601683795, ', rss = ', 625766317206080.5)
+('l1_penalty = ', 10000.0, ', rss = ', 625766386760658.1)
+('l1_penalty = ', 31622.776601683792, ', rss = ', 625766606749278.5)
+('l1_penalty = ', 100000.0, ', rss = ', 625767302791634.1)
+('l1_penalty = ', 316227.76601683791, ', rss = ', 625769507643886.2)
+('l1_penalty = ', 1000000.0, ', rss = ', 625776517727024.0)
+('l1_penalty = ', 3162277.6601683795, ', rss = ', 625799062845467.0)
+('l1_penalty = ', 10000000.0, ', rss = ', 625883719085425.2)
+best l1_penalty =  10.0
+testing: l1_penalty =  10.0 , rss =  1.56983602382e+14
+Number of non-zero coefficients:  18
++------------------+-------+------------------+--------+
+|       name       | index |      value       | stderr |
++------------------+-------+------------------+--------+
+|   (intercept)    |  None |  18993.4272128   |  None  |
+|     bedrooms     |  None |  7936.96767903   |  None  |
+| bedrooms_square  |  None |  936.993368193   |  None  |
+|    bathrooms     |  None |  25409.5889341   |  None  |
+|   sqft_living    |  None |  39.1151363797   |  None  |
+| sqft_living_sqrt |  None |  1124.65021281   |  None  |
+|     sqft_lot     |  None | 0.00348361822299 |  None  |
+|  sqft_lot_sqrt   |  None |  148.258391011   |  None  |
+|      floors      |  None |   21204.335467   |  None  |
+|  floors_square   |  None |  12915.5243361   |  None  |
++------------------+-------+------------------+--------+
+[18 rows x 4 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+*** Limit the number of nonzero weights
+L1 penalty:  100000000.0
+Number of non-zero coefficients:  18
+L1 penalty:  127427498.57
+Number of non-zero coefficients:  18
+L1 penalty:  162377673.919
+Number of non-zero coefficients:  18
+L1 penalty:  206913808.111
+Number of non-zero coefficients:  18
+L1 penalty:  263665089.873
+Number of non-zero coefficients:  17
+L1 penalty:  335981828.628
+Number of non-zero coefficients:  17
+L1 penalty:  428133239.872
+Number of non-zero coefficients:  17
+L1 penalty:  545559478.117
+Number of non-zero coefficients:  17
+L1 penalty:  695192796.178
+Number of non-zero coefficients:  17
+L1 penalty:  885866790.41
+Number of non-zero coefficients:  16
+L1 penalty:  1128837891.68
+Number of non-zero coefficients:  15
+L1 penalty:  1438449888.29
+Number of non-zero coefficients:  15
+L1 penalty:  1832980710.83
+Number of non-zero coefficients:  13
+L1 penalty:  2335721469.09
+Number of non-zero coefficients:  12
+L1 penalty:  2976351441.63
+Number of non-zero coefficients:  10
+L1 penalty:  3792690190.73
+Number of non-zero coefficients:  6
+L1 penalty:  4832930238.57
+Number of non-zero coefficients:  5
+L1 penalty:  6158482110.66
+Number of non-zero coefficients:  3
+L1 penalty:  7847599703.51
+Number of non-zero coefficients:  1
+L1 penalty:  10000000000.0
+Number of non-zero coefficients:  1
+Max L1 penalty:  3792690190.73
+Min L1 penalty:  2976351441.63
+*** Exploring the narrow range of values to find the solution with the right number of non-zeros that has lowest RSS on the validation set
+L1 penalty:  2976351441.63
+Number of non-zero coefficients:  10
+Sparsity:  8
+L1 penalty:  3019316638.95
+Number of non-zero coefficients:  10
+Sparsity:  8
+L1 penalty:  3062281836.27
+Number of non-zero coefficients:  10
+Sparsity:  8
+L1 penalty:  3105247033.59
+Number of non-zero coefficients:  10
+Sparsity:  8
+L1 penalty:  3148212230.92
+Number of non-zero coefficients:  10
+Sparsity:  8
+L1 penalty:  3191177428.24
+Number of non-zero coefficients:  10
+Sparsity:  8
+L1 penalty:  3234142625.56
+Number of non-zero coefficients:  10
+Sparsity:  8
+L1 penalty:  3277107822.88
+Number of non-zero coefficients:  10
+Sparsity:  8
+L1 penalty:  3320073020.2
+Number of non-zero coefficients:  8
+Sparsity:  10
+L1 penalty:  3363038217.52
+Number of non-zero coefficients:  8
+Sparsity:  10
+L1 penalty:  3406003414.84
+Number of non-zero coefficients:  8
+Sparsity:  10
+L1 penalty:  3448968612.16
+Number of non-zero coefficients:  7
+Sparsity:  11
+Validation RSS =  1.04693748875e+15
+L1 penalty:  3491933809.48
+Number of non-zero coefficients:  7
+Sparsity:  11
+Validation RSS =  1.05114762561e+15
+L1 penalty:  3534899006.81
+Number of non-zero coefficients:  7
+Sparsity:  11
+Validation RSS =  1.05599273534e+15
+L1 penalty:  3577864204.13
+Number of non-zero coefficients:  7
+Sparsity:  11
+Validation RSS =  1.06079953176e+15
+L1 penalty:  3620829401.45
+Number of non-zero coefficients:  6
+Sparsity:  12
+L1 penalty:  3663794598.77
+Number of non-zero coefficients:  6
+Sparsity:  12
+L1 penalty:  3706759796.09
+Number of non-zero coefficients:  6
+Sparsity:  12
+L1 penalty:  3749724993.41
+Number of non-zero coefficients:  6
+Sparsity:  12
+L1 penalty:  3792690190.73
+Number of non-zero coefficients:  6
+Sparsity:  12
+Best L1 penalty =  3448968612.16
+RSS =  1.04693748875e+15
+testing: l1_penalty =  3448968612.16 rss =  2.4304885073e+14
++------------------+-------+---------------+--------+
+|       name       | index |     value     | stderr |
++------------------+-------+---------------+--------+
+|   (intercept)    |  None | 222253.192544 |  None  |
+|     bedrooms     |  None | 661.722717782 |  None  |
+|    bathrooms     |  None | 15873.9572593 |  None  |
+|   sqft_living    |  None | 32.4102214513 |  None  |
+| sqft_living_sqrt |  None | 690.114773313 |  None  |
+|      grade       |  None | 2899.42026975 |  None  |
+|    sqft_above    |  None | 30.0115753022 |  None  |
++------------------+-------+---------------+--------+
+[? rows x 4 columns]
