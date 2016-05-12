@@ -184,15 +184,14 @@ def lasso_coordinate_descent_step(i, feature_matrix, output, weights, l1_penalty
         new_weight_i = 0.
     return new_weight_i
 
-def lasso_cyclical_coordinate_descent(feature_matrix, output, initial_weights, l1_penalty, tolerance):
+def lasso_cyclical_coordinate_descent(feature_matrix, output, initial_weights, l1_penalty, tolerance, verbose=False):
     weights = initial_weights
     keep = True
     while keep:
         for i in range(len(weights)):
-            changes = 0
-            old_weight = weights[i]
+            old_weights_i = weights[i]
             weights[i] = lasso_coordinate_descent_step(i, feature_matrix, output, weights, l1_penalty)
-            changes += abs(weights[i] - old_weight)
-        if changes < tolerance:
-            keep = False
+            change = abs(weights[i] - old_weights_i)
+            if change > tolerance:
+                keep = False
     return weights
