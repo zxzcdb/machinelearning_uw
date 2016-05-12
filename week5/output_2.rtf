@@ -19,38 +19,39 @@ Test function. Answer should print 0.425558846691.
 0.425558846691
 ===== Cyclical coordinate descent =====
 **** Quiz question ****
-RSS is:  7.6612100511e+25
+RSS is:  1.63049248148e+15
 **** Quiz question ****
-Which features had weight zero at convergence? ['sqft_living', 'bedrooms'] [ 62067326.88218397  26161208.08576558         0.        ]
+Which features had weight zero at convergence? ['sqft_living', 'bedrooms'] [ 21624998.36636292  63157246.78545421         0.        ]
 ==== Evaluating LASSO fit with more features *****
 **** Quiz question: What features had non-zero weight in this case?
-L1 = 1e7 ['bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated'] [ 79400304.65805088         0.                 0.                 0.
-         0.                 0.                 0.                 0.
-         0.                 0.                 0.                 0.
-         0.                 0.        ]
+L1 = 1e7 ['bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated'] [ 24964803.20411263         0.                 0.          56397533.12096878
+         0.                 0.           3689656.60016713
+   8630251.00033796         0.                 0.                 0.
+         0.                 0.                 0.        ]
 **** Quiz question: What features had non-zero weight in this case?
 L1 = 1e8 ['bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated'] [ 79400304.65805088         0.                 0.                 0.
          0.                 0.                 0.                 0.
          0.                 0.                 0.                 0.
          0.                 0.        ]
-L1 = 1e4:  ['bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated'] [ 78627818.65422589   7195896.15899828   9451295.33705358
-   9729314.58618133  -1746747.22848952 -14905430.19937016
-   8017994.24722362  14140583.16885872 -14204489.47393396
-   7283823.56623173  13124645.77235187   3329889.02368252
- -12629088.90865762   3564098.9613848 ]
+L1 = 1e4:  ['bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated'] [  8.75895325e+07  -2.24790006e+07   1.57236295e+07   1.05393774e+08
+  -2.57043643e+06  -8.65548772e+06   6.95591317e+06   8.21787482e+06
+   5.62865025e+06   2.26789845e+07  -2.00465047e+07  -7.25618289e+06
+  -9.82714585e+07   3.23616425e+06]
 ==== Rescaling learned weights ====
-Normalized weights 1e7 is:  [ 540088.14190533       0.               0.               0.               0.
-       0.               0.               0.               0.               0.
-       0.               0.               0.               0.        ]
-Test: normalized_weights1e7[3] should return 161.31745624837794 0.0
+Normalized weights 1e7 is:  [  1.69812877e+05   0.00000000e+00   0.00000000e+00   1.68724929e+02
+   0.00000000e+00   0.00000000e+00   2.88996209e+05   7.32588312e+04
+   0.00000000e+00   0.00000000e+00   0.00000000e+00   0.00000000e+00
+   0.00000000e+00   0.00000000e+00]
+Test: normalized_weights1e7[3] should return 161.31745624837794 168.724928893
 Normalized weights 1e8 is:  [ 540088.14190533       0.               0.               0.               0.
        0.               0.               0.               0.               0.
        0.               0.               0.               0.        ]
-Normalized weights 1e4 is:  [ 540088.14190533       0.               0.               0.               0.
-       0.               0.               0.               0.               0.
-       0.               0.               0.               0.        ]
-RSS of test data with L1 1e7 is:  5.37145848898e+14
+Normalized weights 1e4 is:  [  5.95792019e+05  -4.37270098e+04   4.75216739e+04   3.15307354e+02
+  -3.96573388e-01  -3.80348027e+04   5.44829168e+05   6.97583307e+04
+   1.10305063e+04   1.99139141e+04  -6.91893183e+01  -9.31365911e+01
+  -3.39104771e+02   5.36316829e+01]
+RSS of test data with L1 1e7 is:  2.70215018899e+14
 RSS of test data with L1 1e8 is:  5.37145848898e+14
-RSS of test data with L1 1e4 is:  5.37145848898e+14
+RSS of test data with L1 1e4 is:  2.25535784136e+14
 *** Quiz question ***
 Which model performed best on the test data?
