@@ -157,3 +157,42 @@ def get_simple_residuals(prediction, output):
     res = prediction - output
     rs = res * res
     return rs.sum()
+
+# ---------------------------------------------
+# Week 5: Feature Selection & Lasso
+# ---------------------------------------------
+def normalize_features(feature_matrix):
+    norms = np.linalg.norm(feature_matrix, axis=0)
+    normalized_feature_matrix = feature_matrix / norms
+    return normalized_feature_matrix, norms
+
+def lasso_coordinate_descent_step(i, feature_matrix, output, weights, l1_penalty):
+    # compute prediction
+    prediction = predict_output(feature_matrix, weights)
+    # compute ro[i] = SUM[ [feature_i]*(output - prediction + weight[i]*[feature_i]) ]
+    ro = {}
+    ro_i = feature_matrix[:,i] * (output - prediction + weights[i]*feature_matrix[:,i])
+    ro_i = ro_i.sum()
+
+    if i == 0: # intercept -- do not regularize
+        new_weight_i = ro_i
+    elif ro_i < -l1_penalty/2.:
+        new_weight_i = ro_i + l1_penalty/2
+    elif ro_i > l1_penalty/2.:
+        new_weight_i = ro_i - l1_penalty/2
+    else:
+        new_weight_i = 0.
+    return new_weight_i
+
+def lasso_cyclical_coordinate_descent(feature_matrix, output, initial_weights, l1_penalty, tolerance):
+    weights = initial_weights
+    keep = True
+    while keep:
+        for i in range(len(weights)):
+            changes = 0
+            old_weight = weights[i]
+            weights[i] = lasso_coordinate_descent_step(i, feature_matrix, output, weights, l1_penalty)
+            changes += abs(weights[i] - old_weight)
+        if changes < tolerance:
+            keep = False
+    return weights
