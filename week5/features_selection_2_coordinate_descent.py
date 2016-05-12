@@ -66,7 +66,7 @@ tolerance = 1.0
 weights = lasso_cyclical_coordinate_descent(normalized_simple_feature_matrix,
                                             output, initial_weights, l1_penalty, tolerance)
 
-rss = get_simple_residuals(predict_output(simple_feature_matrix, weights), output)
+rss = get_simple_residuals(predict_output(normalized_simple_feature_matrix, weights), output)
 print "**** Quiz question ****"
 print "RSS is: ", rss
 print "**** Quiz question ****"
@@ -92,7 +92,7 @@ op = 'price'
 (normalized_all_feature_matrix, all_norms) = normalize_features(all_feature_matrix)
 
 l1_penalty = 1e7
-initial_weights = np.array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+initial_weights = np.zeros(14)
 tolerance = 1
 weights1e7 = lasso_cyclical_coordinate_descent(normalized_all_feature_matrix, output,
                                             initial_weights, l1_penalty, tolerance)
@@ -100,7 +100,7 @@ print "**** Quiz question: What features had non-zero weight in this case?"
 print "L1 = 1e7",all_features, weights1e7
 
 l1_penalty= 1e8
-initial_weights = np.array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+initial_weights = np.zeros(14)
 tolerance = 1
 weights1e8 = lasso_cyclical_coordinate_descent(normalized_all_feature_matrix, output,
                                             initial_weights, l1_penalty, tolerance)
@@ -108,7 +108,7 @@ print "**** Quiz question: What features had non-zero weight in this case?"
 print "L1 = 1e8", all_features, weights1e8
 
 l1_penalty= 1e4
-initial_weights = np.array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+initial_weights = np.zeros(14)
 tolerance = 5e5
 weights1e4 = lasso_cyclical_coordinate_descent(normalized_all_feature_matrix, output,
                                             initial_weights, l1_penalty, tolerance)
