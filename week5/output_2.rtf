@@ -1,0 +1,56 @@
+==== To test normalize_features ===
+[[ 0.6  0.6  0.6]
+ [ 0.8  0.8  0.8]]
+Should print: 
+[[ 0.6  0.6  0.6]
+  [ 0.8  0.8  0.8]]
+[  5.  10.  15.]
+Should print: 
+[5.  10.  15.]
+==== Implementing Coordinate Descent with normalized features ====
+=== Effect of L1 penalty ===
+ro[ 0 ] is: 79400300.0349
+ro[ 1 ] is: 87939470.773
+ro[ 2 ] is: 80966698.676
+***** Quiz question *****
+Range 1 of L1 is [ 161933397.352 ,  175878941.546 ).
+Range 2 of L1 is lambda < 161933397.352
+Test function. Answer should print 0.425558846691.
+0.425558846691
+===== Cyclical coordinate descent =====
+**** Quiz question ****
+RSS is:  7.6612100511e+25
+**** Quiz question ****
+Which features had weight zero at convergence? ['sqft_living', 'bedrooms'] [ 62067326.88218397  26161208.08576558         0.        ]
+==== Evaluating LASSO fit with more features *****
+**** Quiz question: What features had non-zero weight in this case?
+L1 = 1e7 ['bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated'] [ 79400304.65805088         0.                 0.                 0.
+         0.                 0.                 0.                 0.
+         0.                 0.                 0.                 0.
+         0.                 0.        ]
+**** Quiz question: What features had non-zero weight in this case?
+L1 = 1e8 ['bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated'] [ 79400304.65805088         0.                 0.                 0.
+         0.                 0.                 0.                 0.
+         0.                 0.                 0.                 0.
+         0.                 0.        ]
+L1 = 1e4:  ['bedrooms', 'bathrooms', 'sqft_living', 'sqft_lot', 'floors', 'waterfront', 'view', 'condition', 'grade', 'sqft_above', 'sqft_basement', 'yr_built', 'yr_renovated'] [ 78627818.65422589   7195896.15899828   9451295.33705358
+   9729314.58618133  -1746747.22848952 -14905430.19937016
+   8017994.24722362  14140583.16885872 -14204489.47393396
+   7283823.56623173  13124645.77235187   3329889.02368252
+ -12629088.90865762   3564098.9613848 ]
+==== Rescaling learned weights ====
+Normalized weights 1e7 is:  [ 540088.14190533       0.               0.               0.               0.
+       0.               0.               0.               0.               0.
+       0.               0.               0.               0.        ]
+Test: normalized_weights1e7[3] should return 161.31745624837794 0.0
+Normalized weights 1e8 is:  [ 540088.14190533       0.               0.               0.               0.
+       0.               0.               0.               0.               0.
+       0.               0.               0.               0.        ]
+Normalized weights 1e4 is:  [ 540088.14190533       0.               0.               0.               0.
+       0.               0.               0.               0.               0.
+       0.               0.               0.               0.        ]
+RSS of test data with L1 1e7 is:  5.37145848898e+14
+RSS of test data with L1 1e8 is:  5.37145848898e+14
+RSS of test data with L1 1e4 is:  5.37145848898e+14
+*** Quiz question ***
+Which model performed best on the test data?
