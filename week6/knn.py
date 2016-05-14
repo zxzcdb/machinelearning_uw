@@ -99,6 +99,9 @@ for k in kvals:
     rss_all.append(rss)
     print "RSS is: ", rss
 
+
 print "*** QUIZ QUESTION"
 print "What is the RSS: ", rss_all
 plt.plot(kvals, rss_all,'bo-')
+
+print "Minimum RSS occurs when k=", np.argmin(rss_all)+1, ", value is ", min(rss_all)
