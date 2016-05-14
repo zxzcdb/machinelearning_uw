@@ -195,3 +195,28 @@ def lasso_cyclical_coordinate_descent(feature_matrix, output, initial_weights, l
             if change > tolerance:
                 keep = False
     return weights
+
+# ---------------------------------------------
+# Week 6: Nearest neighbor and kernel regression
+# ---------------------------------------------
+def compute_distances(query, compare_matrix):
+    distances = np.sqrt(np.sum((compare_matrix[:] - query)**2,axis=1))
+    return distances
+
+def compute_knn_index(k, query, compare_matrix):
+    distances = np.sqrt(np.sum((compare_matrix[:] - query)**2,axis=1))
+    index = distances.argsort()[:k]
+    return index
+
+def predict_knn(k, query, compare_matrix, compare_output):
+    index = compute_knn_index(k, query, compare_matrix)
+    predict = np.average(compare_output[index])
+    return (predict, index)
+
+def multiple_predict_knn(k, query_matrix, compare_matrix, compare_output):
+    predict = []
+    index = []
+    for i in range(query_matrix.shape[0]):
+        predict.append(predict_knn(k, query_matrix[i], compare_matrix, compare_output)[0])
+        index.append(predict_knn(k, query_matrix[i], compare_matrix, compare_output)[1])
+    return (predict, index)
