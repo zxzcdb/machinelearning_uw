@@ -1,0 +1,111 @@
+### Use .apply() to build a new feature with the counts for each of the selected_words: ###
+Count great as:  45206
+Count fantastic as:  932
+Count amazing as:  1363
+Count love as:  42065
+Count horrible as:  734
+Count bad as:  3724
+Count terrible as:  748
+Count awful as:  383
+Count wow as:  144
+Count hate as:  1220
+### Create a new sentiment analysis model using only the selected_words as features: ###
+Logistic regression:
+--------------------------------------------------------
+Number of examples          : 133448
+Number of classes           : 2
+Number of feature columns   : 11
+Number of unpacked features : 11
+Number of coefficients    : 12
+Starting Newton Method
+--------------------------------------------------------
++-----------+----------+--------------+-------------------+---------------------+
+| Iteration | Passes   | Elapsed Time | Training-accuracy | Validation-accuracy |
++-----------+----------+--------------+-------------------+---------------------+
+| 1         | 2        | 1.280371     | 0.844299          | 0.842842            |
+| 2         | 3        | 1.477555     | 0.844186          | 0.842842            |
+| 3         | 4        | 1.669765     | 0.844276          | 0.843142            |
+| 4         | 5        | 1.883592     | 0.844269          | 0.843142            |
+| 5         | 6        | 2.107907     | 0.844269          | 0.843142            |
+| 6         | 7        | 2.310964     | 0.844269          | 0.843142            |
++-----------+----------+--------------+-------------------+---------------------+
+SUCCESS: Optimal solution found.
+
+Find the most positive and negative coefficients:
+Columns:
+	name	str
+	index	str
+	class	int
+	value	float
+	stderr	float
+
+Rows: 12
+
+Data:
++-------------+-------+-------+-----------------+------------------+
+|     name    | index | class |      value      |      stderr      |
++-------------+-------+-------+-----------------+------------------+
+| (intercept) |  None |   1   |  1.36728315229  | 0.00861805467824 |
+|   awesome   |  None |   1   |  1.05800888878  |  0.110865296265  |
+|    great    |  None |   1   |  0.883937894898 | 0.0217379527921  |
+|  fantastic  |  None |   1   |  0.891303090304 |  0.154532343591  |
+|   amazing   |  None |   1   |  0.892802422508 |  0.127989503231  |
+|     love    |  None |   1   |  1.39989834302  | 0.0287147460124  |
+|   horrible  |  None |   1   |  -1.99651800559 | 0.0973584169028  |
+|     bad     |  None |   1   | -0.985827369929 | 0.0433603009142  |
+|   terrible  |  None |   1   |  -2.09049998487 | 0.0967241912229  |
+|    awful    |  None |   1   |  -1.76469955631 |  0.134679803365  |
++-------------+-------+-------+-----------------+------------------+
+[12 rows x 5 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+### Comparing the accuracy of different sentiment analysis model ###
+{'f1_score': 0.914242563530107, 'auc': 0.6648096413721418, 'recall': 0.9953531598513011, 'precision': 0.8453551912568306, 'log_loss': 0.4054747110365649, 'roc_curve': Columns:
+	threshold	float
+	fpr	float
+	tpr	float
+	p	int
+	n	int
+
+Rows: 100001
+
+Data:
++-----------+-----+-----+-------+------+
+| threshold | fpr | tpr |   p   |  n   |
++-----------+-----+-----+-------+------+
+|    0.0    | 1.0 | 1.0 | 27976 | 5328 |
+|   1e-05   | 1.0 | 1.0 | 27976 | 5328 |
+|   2e-05   | 1.0 | 1.0 | 27976 | 5328 |
+|   3e-05   | 1.0 | 1.0 | 27976 | 5328 |
+|   4e-05   | 1.0 | 1.0 | 27976 | 5328 |
+|   5e-05   | 1.0 | 1.0 | 27976 | 5328 |
+|   6e-05   | 1.0 | 1.0 | 27976 | 5328 |
+|   7e-05   | 1.0 | 1.0 | 27976 | 5328 |
+|   8e-05   | 1.0 | 1.0 | 27976 | 5328 |
+|   9e-05   | 1.0 | 1.0 | 27976 | 5328 |
++-----------+-----+-----+-------+------+
+[100001 rows x 5 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns., 'confusion_matrix': Columns:
+	target_label	int
+	predicted_label	int
+	count	int
+
+Rows: 4
+
+Data:
++--------------+-----------------+-------+
+| target_label | predicted_label | count |
++--------------+-----------------+-------+
+|      0       |        0        |  234  |
+|      0       |        1        |  5094 |
+|      1       |        1        | 27846 |
+|      1       |        0        |  130  |
++--------------+-----------------+-------+
+[4 rows x 3 columns]
+, 'accuracy': 0.8431419649291376}
+### Interpreting the difference in performance between the model ###
+# Most positive reviews for the Baby Trend Diaper Champ
+'I LOVE LOVE LOVE this product! It is SO much easier to use than the Diaper Genie, (you need a PHD in poopy to figure out how to use the darn thing!) and it even takes the same bags as my kitchen trash can, shich is super convenient, and cost efficient as I can buy them in bulk.The only reason for not rating it a 5 star was that I did have one small problem with it. The foam gasket in the barrell which keeps the poopy smell inside the unit ripped somehow, and it got VERY stinky. HOWEVER, I contacted the manufacturer though their website, and received an email back the same day stating that this was unusual, and that replacement gaskets were on their way to me. They arrived inside of a week and after replacing, it works great again! (They even sent me extras should it happen again)I HIGHLY reccomend this diaper pail over ANY competitors, you will not be sorry!'
+"I received my Diaper Champ at my baby shower for the birth of my first son 11 months ago. I use it faithfully every day and love the ease and convenience of only having to change the bag once a week! I love that you can use regular kitchen-size trash bags and don't need to purchase any special expensive bags. One thing you might want to be careful of, however...make sure you do not throw loose baby wipes into the Diaper Champ or else the flip mechanism can become jammed and after time will not seal properly due to having to pull out wipes that are stuck. I love my diaper champ so much, I have asked for a second one for my upcoming baby shower for my second son."
+"Two girlfriends and two family members put me onto this diaper pail.  They each had tried the Diaper Genie and had horrible results with eventual smells, and costliness of buying proprietary DG cartridges.  My family members eventually started bringing every dirty diaper out to the trash and leaving just wet diapers in the DG, that is until they found out about the Diaper Champ!Wow, what a difference, it seals in orders very well and using normal 8 - 13 gallon trash bags makes it economical.  The ease of use factor is amazing, drop a dirty diaper in the hole, grab the handle, give it a flip, the plunger pushes the diaper down and it drops into the can with a little gravitic help.No wrenching, turning, fighting a cartridge bag system.Opening it for the first time was a little hard, but look at that from a child's point of view, a toddler is not going to get into it, and neither is a dog.  Also, it needs to be away from the wall a little bit, so that it's flip top access lid locks into place and doesn't plop back down, but when engaged, the top will stay open so you can get at the bag of diapers within without having it fall onto your hand.We keep a little can of Oust nearby, spritz it before opening the top, grab the bag at it's neck to close off stinky odors, lift it out, twist it at the top and secure it with a twist-tie, and away we go to the garbage can.  And we take antibacterial wipes and run them around in the plunger area on both sides, voila, it's clean.At 3 months, we change the bag about 1 - 2 times a week.  Maybe as baby grows into larger diapers it will be more like 2 - 3 times a week.Still, that's better than taking every dirty diaper (8 or more a day) outside to the garbage can, especially in a Minnesota winter."
