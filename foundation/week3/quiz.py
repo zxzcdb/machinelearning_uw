@@ -54,13 +54,20 @@ selected_words_model.evaluate(test_data)
 
 print "### Interpreting the difference in performance between the model ###"
 diaper_champ_reviews = products[products['name'] == 'Baby Trend Diaper Champ']
-diaper_champ_reviews['predicted_sentiment'] = selected_words_model.predict(diaper_champ_reviews, output_type='probability')
+train_data,test_data = products.random_split(.8, seed=0)
+print "## Use sentiment model:"
+sentiment_model = graphlab.logistic_classifier.create(train_data,
+                                                     target='sentiment',
+                                                     features=['word_count'],
+                                                     validation_set=test_data)
+diaper_champ_reviews['predicted_sentiment'] = sentiment_model.predict(diaper_champ_reviews, output_type='probability')
 diaper_champ_reviews = diaper_champ_reviews.sort('predicted_sentiment', ascending=False)
 
 print "# Most positive reviews for the Baby Trend Diaper Champ"
-diaper_champ_reviews[0]['review']
+diaper_champ_reviews[0]
 
-diaper_champ_reviews[1]['review']
-
-diaper_champ_reviews[-2]['review']
-
+print "## Use selected model:"
+diaper_champ_reviews['predicted_selected_sentiment'] = sentiment_model.predict(diaper_champ_reviews, output_type='probability')
+diaper_champ_reviews = diaper_champ_reviews.sort('predicted_selected_sentiment', ascending=False)
+print "# Most positive reviews for the Baby Trend Diaper Champ (selected)"
+diaper_champ_reviews[0]
