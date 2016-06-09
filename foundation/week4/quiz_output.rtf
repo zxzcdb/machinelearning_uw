@@ -1,0 +1,121 @@
+### Compare top words according to word counts to TF-IDF ###
+Q: What are the 3 words in his articles with highest word counts?
++-------+-------+
+|  word | count |
++-------+-------+
+|  the  |   27  |
+|   in  |   18  |
+|  and  |   15  |
+|   of  |   13  |
+|   a   |   10  |
+|  has  |   9   |
+|  john |   7   |
+|   he  |   7   |
+|   on  |   6   |
+| award |   5   |
++-------+-------+
+[255 rows x 2 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+Q: What are the 3 words in his articles with highest TF-IDF?
++---------------+---------------+
+|      word     |     tfidf     |
++---------------+---------------+
+|    furnish    |  18.38947184  |
+|     elton     |  17.48232027  |
+|   billboard   | 17.3036809575 |
+|      john     | 13.9393127924 |
+|  songwriters  |  11.250406447 |
+| tonightcandle | 10.9864953892 |
+|  overallelton | 10.9864953892 |
+|    19702000   | 10.2933482087 |
+|   fivedecade  | 10.2933482087 |
+|      aids     |  10.262846934 |
++---------------+---------------+
+[255 rows x 2 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+### Measuring distance ###
+Q: What's the cosine distance between the articles on 'Elton John' and 'Victoria Beckham'?
+0.956700637666
+Q: What's the cosine distance between the articles on 'Elton John' and 'Paul McCartney'?
+0.825031002922
+Q: Which one of the two is closest to Elton John?
+### Building nearest neighbors models with different input features and setting the distance ###
+Starting brute force nearest neighbors model training.
+Starting brute force nearest neighbors model training.
+Q: What's the most similar article, other than itself, to the one on 'Elton John' using word count features?
+Starting pairwise querying.
++--------------+---------+-------------+--------------+
+| Query points | # Pairs | % Complete. | Elapsed Time |
++--------------+---------+-------------+--------------+
+| 0            | 1       | 0.00169288  | 23.978ms     |
+| Done         |         | 100         | 541.308ms    |
++--------------+---------+-------------+--------------+
++-------------+-------------------+-------------------+------+
+| query_label |  reference_label  |      distance     | rank |
++-------------+-------------------+-------------------+------+
+|      0      |     Elton John    | 2.22044604925e-16 |  1   |
+|      0      |   Cliff Richard   |   0.16142415259   |  2   |
+|      0      |   Sandro Petrone  |   0.16822542751   |  3   |
+|      0      |    Rod Stewart    |   0.168327165587  |  4   |
+|      0      | Malachi O'Doherty |   0.177315545979  |  5   |
++-------------+-------------------+-------------------+------+
+[5 rows x 4 columns]
+
+Q: What's the most similar article, other than itself, to the one on 'Elton John' using TF-IDF features?
+Starting pairwise querying.
++--------------+---------+-------------+--------------+
+| Query points | # Pairs | % Complete. | Elapsed Time |
++--------------+---------+-------------+--------------+
+| 0            | 1       | 0.00169288  | 27.353ms     |
+| Done         |         | 100         | 618.035ms    |
++--------------+---------+-------------+--------------+
++-------------+------------------+--------------------+------+
+| query_label | reference_label  |      distance      | rank |
++-------------+------------------+--------------------+------+
+|      0      |    Elton John    | -2.22044604925e-16 |  1   |
+|      0      |   Rod Stewart    |   0.717219667893   |  2   |
+|      0      |  George Michael  |   0.747600998969   |  3   |
+|      0      | Sting (musician) |   0.747671954431   |  4   |
+|      0      |   Phil Collins   |   0.75119324879    |  5   |
++-------------+------------------+--------------------+------+
+[5 rows x 4 columns]
+
+Q: What's the most similar article, other than itself, to the one on 'Victoria Beckham' using word count features?
+Starting pairwise querying.
++--------------+---------+-------------+--------------+
+| Query points | # Pairs | % Complete. | Elapsed Time |
++--------------+---------+-------------+--------------+
+| 0            | 1       | 0.00169288  | 15.369ms     |
+| Done         |         | 100         | 519.578ms    |
++--------------+---------+-------------+--------------+
++-------------+--------------------------+--------------------+------+
+| query_label |     reference_label      |      distance      | rank |
++-------------+--------------------------+--------------------+------+
+|      0      |     Victoria Beckham     | -2.22044604925e-16 |  1   |
+|      0      | Mary Fitzgerald (artist) |   0.207307036115   |  2   |
+|      0      |      Adrienne Corri      |   0.214509782788   |  3   |
+|      0      |     Beverly Jane Fry     |   0.217466468741   |  4   |
+|      0      |      Raman Mundair       |   0.217695474992   |  5   |
++-------------+--------------------------+--------------------+------+
+[5 rows x 4 columns]
+
+Q: What's the most similar article, other than itself, to the one on 'Victoria Beckham' using TF-IDF features?
+Starting pairwise querying.
++--------------+---------+-------------+--------------+
+| Query points | # Pairs | % Complete. | Elapsed Time |
++--------------+---------+-------------+--------------+
+| 0            | 1       | 0.00169288  | 21.256ms     |
+| Done         |         | 100         | 671.588ms    |
++--------------+---------+-------------+--------------+
++-------------+---------------------+-------------------+------+
+| query_label |   reference_label   |      distance     | rank |
++-------------+---------------------+-------------------+------+
+|      0      |   Victoria Beckham  | 1.11022302463e-16 |  1   |
+|      0      |    David Beckham    |   0.548169610263  |  2   |
+|      0      | Stephen Dow Beckham |   0.784986706828  |  3   |
+|      0      |        Mel B        |   0.809585523409  |  4   |
+|      0      |    Caroline Rush    |   0.819826422919  |  5   |
++-------------+---------------------+-------------------+------+
+[5 rows x 4 columns]
