@@ -1,0 +1,87 @@
+### Counting unique users ###
+Kanye West
+2522
+Foo Fighters
+2055
+Taylor Swift
+3246
+Lady GaGa
+2928
+### Using groupby-aggregate to find the most popular and least popular artist ###
++------------------------+-------------+
+|         artist         | total_count |
++------------------------+-------------+
+|     Kings Of Leon      |    43218    |
+|     Dwight Yoakam      |    40619    |
+|         Björk          |    38889    |
+|        Coldplay        |    35362    |
+| Florence + The Machine |    33387    |
+|     Justin Bieber      |    29715    |
+|    Alliance Ethnik     |    26689    |
+|      OneRepublic       |    25754    |
+|         Train          |    25402    |
+|     The Black Keys     |    22184    |
++------------------------+-------------+
+[3375 rows x 2 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+### Using groupby-aggregate to find the most recommended songs ###
+Recsys training: model = item_similarity
+### Using groupby-aggregate to find the most recommended songs ###
+Recsys training: model = item_similarity
+Warning: Ignoring columns song_id, listen_count, title, artist;
+    To use one of these as a target column, set target = <column_name>
+    and use a method that allows the use of a target.
+Preparing data set.
+    Data has 893580 observations with 66085 users and 9952 items.
+    Data prepared in: 1.65278s
+Computing item similarity statistics:
+Computing most similar items for 9952 items:
++-----------------+-----------------+
+| Number of items | Elapsed Time    |
++-----------------+-----------------+
+| 1000            | 2.36385         |
+| 2000            | 2.51163         |
+| 3000            | 2.63137         |
+| 4000            | 2.76725         |
+| 5000            | 2.9015          |
+| 6000            | 3.02294         |
+| 7000            | 3.15122         |
+| 8000            | 3.28229         |
+| 9000            | 3.41149         |
++-----------------+-----------------+
+Finished training in 4.34278s
+recommendations finished on 1000/10000 queries. users per second: 914.983
+recommendations finished on 2000/10000 queries. users per second: 885.533
+recommendations finished on 3000/10000 queries. users per second: 879.396
+recommendations finished on 4000/10000 queries. users per second: 855.164
+recommendations finished on 5000/10000 queries. users per second: 838.944
+recommendations finished on 6000/10000 queries. users per second: 834.775
+recommendations finished on 7000/10000 queries. users per second: 826.105
+recommendations finished on 8000/10000 queries. users per second: 817.602
+recommendations finished on 9000/10000 queries. users per second: 808.034
+recommendations finished on 10000/10000 queries. users per second: 778.381
+Columns:
+	song	str
+	count	int
+
+Rows: 3134
+
+Data:
++--------------------------------+-------+
+|              song              | count |
++--------------------------------+-------+
+|          Undo - Björk          |  431  |
+|     Secrets - OneRepublic      |  384  |
+|    Revelry - Kings Of Leon     |  231  |
+| You're The One - Dwight Yoakam |  171  |
+| Fireflies - Charttraxx Karaoke |  123  |
+|    Hey_ Soul Sister - Train    |  106  |
+| Horn Concerto No. 4 in E f...  |   99  |
+|    Sehr kosmisch - Harmonia    |   71  |
+| OMG - Usher featuring will...  |   58  |
+| Dog Days Are Over (Radio E...  |   53  |
++--------------------------------+-------+
+[3134 rows x 2 columns]
+Note: Only the head of the SFrame is printed.
+You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
