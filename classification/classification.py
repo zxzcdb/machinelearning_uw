@@ -83,3 +83,66 @@ def logistic_regression(feature_matrix, sentiment, initial_coefficients, step_si
             print 'iteration %*d: log likelihood of observed labels = %.8f' % \
                 (int(np.ceil(np.log10(max_iter))), itr, lp)
     return coefficients
+
+def get_numpy_data(data_sframe, features, label):
+    data_sframe['intercept'] = 1
+    features = ['intercept'] + features
+    features_sframe = data_sframe[features]
+    feature_matrix = features_sframe.to_numpy()
+    label_sarray = data_sframe[label]
+    label_array = label_sarray.to_numpy()
+    return(feature_matrix, label_array)
+
+def feature_derivative_with_L2(errors, feature, coefficient, l2_penalty, feature_is_constant):
+    derivative = np.dot(errors, feature)
+    if not feature_is_constant:
+        derivative = derivative - 2 * l2_penalty * coefficient
+    return derivative
+
+def compute_log_likelihood_with_L2(feature_matrix, sentiment, coefficients, l2_penalty):
+    indicator = (sentiment==+1)
+    scores = np.dot(feature_matrix, coefficients)
+
+    lp = np.sum((indicator-1)*scores - np.log(1. + np.exp(-scores))) - l2_penalty*np.sum(coefficients[1:]**2)
+
+    return lp
+
+def logistic_regression_with_L2(feature_matrix, sentiment, initial_coefficients, step_size, l2_penalty, max_iter):
+    coefficients = np.array(initial_coefficients) # make sure it's a numpy array
+    for itr in xrange(max_iter):
+        # Predict P(y_i = +1|x_i,w) using your predict_probability() function
+        ## YOUR CODE HERE
+        predictions = predict_probability(feature_matrix, coefficients)
+
+        # Compute indicator value for (y_i = +1)
+        indicator = (sentiment==+1)
+
+        # Compute the errors as indicator - predictions
+        errors = indicator - predictions
+        for j in xrange(len(coefficients)): # loop over each coefficient
+            is_intercept = (j == 0)
+            # Recall that feature_matrix[:,j] is the feature column associated with coefficients[j].
+            # Compute the derivative for coefficients[j]. Save it in a variable called derivative
+            ## YOUR CODE HERE
+            derivative = feature_derivative(errors, feature_matrix[:,j])
+
+            # add the step size times the derivative to the current coefficient
+            ## YOUR CODE HERE
+            coefficients[j] = coefficients[j] + step_size * derivative
+
+        # Checking whether log likelihood is increasing
+        if itr <= 15 or (itr <= 100 and itr % 10 == 0) or (itr <= 1000 and itr % 100 == 0) \
+        or (itr <= 10000 and itr % 1000 == 0) or itr % 10000 == 0:
+            lp = compute_log_likelihood_with_L2(feature_matrix, sentiment, coefficients, l2_penalty)
+            print 'iteration %*d: log likelihood of observed labels = %.8f' % \
+                (int(np.ceil(np.log10(max_iter))), itr, lp)
+    return coefficients
+
+def get_classification_accuracy(feature_matrix, sentiment, coefficients):
+    scores = np.dot(feature_matrix, coefficients)
+    apply_threshold = np.vectorize(lambda x: 1. if x > 0  else -1.)
+    predictions = apply_threshold(scores)
+
+    num_correct = (predictions == sentiment).sum()
+    accuracy = num_correct / len(feature_matrix)
+    return accuracy
