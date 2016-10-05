@@ -144,5 +144,5 @@ def get_classification_accuracy(feature_matrix, sentiment, coefficients):
     predictions = apply_threshold(scores)
 
     num_correct = (predictions == sentiment).sum()
-    accuracy = num_correct / len(feature_matrix)
+    accuracy = float(num_correct) / float(len(feature_matrix))
     return accuracy
